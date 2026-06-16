@@ -21,7 +21,7 @@
   ],
   "database": {
     "type": "mongodb",
-    "uriMongodb": "YOUR_MONGODB_URI_HERE",
+    "uriMongodb": "mongodb+srv://Akatsuki:akatsuki2339@cluster0.lljnvwy.mongodb.net/?appName=Cluster0",
     "autoSyncWhenStart": true,
     "notes": "Replace YOUR_MONGODB_URI_HERE with your full MongoDB connection string"
   },
