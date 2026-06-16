@@ -11,7 +11,7 @@
 
 const fs      = require("fs-extra");
 const path    = require("path");
-const login   = require("ws3-fca");
+const { login } = require("ws3-fca");
 const log     = require("../../logger/log");
 const Loading = require("../../logger/loading");
 
