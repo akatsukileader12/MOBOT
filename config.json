@@ -1,0 +1,57 @@
+{
+  "facebookAccount": {
+    "email": "",
+    "password": "",
+    "2FASecret": "",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; SM-S928B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    "notes": "Leave email/password blank if you're using cookies in account.txt"
+  },
+  "prefix": "/",
+  "botName": "MKBOT",
+  "language": "en",
+  "timeZone": "Africa/Johannesburg",
+  "adminBot": [
+    "YOUR_FACEBOOK_ID_HERE"
+  ],
+  "premiumUsers": [
+    "YOUR_FACEBOOK_ID_HERE"
+  ],
+  "devUsers": [
+    "YOUR_FACEBOOK_ID_HERE"
+  ],
+  "database": {
+    "type": "mongodb",
+    "uriMongodb": "YOUR_MONGODB_URI_HERE",
+    "autoSyncWhenStart": true,
+    "notes": "Replace YOUR_MONGODB_URI_HERE with your full MongoDB connection string"
+  },
+  "antiInbox": false,
+  "adminOnly": {
+    "enable": false,
+    "ignoreCommand": []
+  },
+  "whiteListMode": {
+    "enable": false,
+    "whiteListIds": [],
+    "notes": "If enabled, only listed user IDs can use the bot"
+  },
+  "whiteListModeThread": {
+    "enable": false,
+    "whiteListThreadIds": [],
+    "notes": "If enabled, only listed thread IDs can use the bot"
+  },
+  "spamProtection": {
+    "enable": true,
+    "commandThreshold": 5,
+    "timeWindow": 10,
+    "notes": "commandThreshold commands per timeWindow seconds triggers spam protection"
+  },
+  "autoRestart": {
+    "time": null,
+    "notes": "Set a cron time like '0 */6 * * *' to auto-restart every 6 hours. null = disabled"
+  },
+  "dashboard": {
+    "enable": false,
+    "port": 3001
+  }
+}
