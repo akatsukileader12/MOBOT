@@ -17,6 +17,7 @@ process.on("uncaughtException", (err) => {
   setTimeout(() => process.exit(1), 1000);
 });
 
+const http = require("http");
 const fs   = require("fs-extra");
 const path = require("path");
 const cron = require("node-cron");
@@ -140,4 +141,13 @@ function setupAutoRestart() {
 
   log.success("MKBOT", `Bot is live! ID: ${global.GoatBot.botID}  Prefix: "${config.prefix}"`);
   log.success("MKBOT", `Commands loaded: ${global.GoatBot.commands.size}  Events: ${global.GoatBot.eventCommands.size}`);
+
+  /* ─── Keepalive HTTP server (required for Render Web Service) ── */
+  const PORT = process.env.PORT || 3000;
+  http.createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end(`MKBOT is running. Uptime: ${utils.formatUptime(Date.now() - global.GoatBot.startTime)}`);
+  }).listen(PORT, () => {
+    log.info("SERVER", `Keepalive server listening on port ${PORT}`);
+  });
 })();
