@@ -143,10 +143,10 @@ function setupAutoRestart() {
     log.info("RELOGIN", "Re-logging in...");
     const newApi = await doLogin(config);
     global.GoatBot.fcaApi = newApi;
-    startListening(newApi);
+    await startListening(newApi);
   };
 
-  startListening(api);
+  await startListening(api);
 
   log.success("MKBOT", `Bot is live! ID: ${global.GoatBot.botID}  Prefix: "${config.prefix}"`);
   log.success("MKBOT", `Commands loaded: ${global.GoatBot.commands.size}  Events: ${global.GoatBot.eventCommands.size}`);
