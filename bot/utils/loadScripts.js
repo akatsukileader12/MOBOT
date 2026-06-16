@@ -25,6 +25,9 @@ function loadCommands() {
   const { commands, aliases, commandFilesPath } = global.GoatBot;
   const banned = (global.GoatBot.configCommands?.commandBanned || []).map(s => s.toLowerCase());
 
+  // Reset onChat hooks so reloads don't duplicate
+  global.GoatBot.onChat = [];
+
   if (!fs.existsSync(cmdsDir)) {
     log.warn("LOADER", "scripts/cmds directory not found — skipping commands");
     return;
@@ -58,6 +61,17 @@ function loadCommands() {
         }
       }
 
+      // Register onChat hook if command defines one
+      if (typeof mod.onChat === "function") {
+        global.GoatBot.onChat.push(name);
+        log.info("LOADER", `Registered onChat hook: ${name}`);
+      }
+
+      // Register onEvent hook if command defines one
+      if (typeof mod.onEvent === "function") {
+        global.GoatBot.onEvent.push(name);
+      }
+
       loaded++;
     } catch (err) {
       log.error("LOADER", `Failed to load command "${file}": ${err.message}`);
@@ -65,11 +79,14 @@ function loadCommands() {
     }
   }
 
-  log.success("LOADER", `Commands: ${loaded} loaded, ${failed} failed`);
+  log.success("LOADER", `Commands: ${loaded} loaded, ${failed} failed | onChat hooks: ${global.GoatBot.onChat.length}`);
 }
 
 function loadEvents() {
   const { eventCommands, eventCommandsFilesPath } = global.GoatBot;
+
+  // Reset onEvent hooks so reloads don't duplicate
+  global.GoatBot.onEvent = [];
 
   if (!fs.existsSync(eventsDir)) {
     log.warn("LOADER", "scripts/events directory not found — skipping events");
