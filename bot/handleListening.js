@@ -28,27 +28,46 @@ function isSpamming(threadID) {
   return record.count > threshold;
 }
 
-module.exports = function startListening(api) {
+module.exports = async function startListening(api) {
   global.GoatBot.fcaApi = api;
   global.GoatBot.botID  = api.getCurrentUserID();
 
-  log.info("LISTEN", "Listening for messages...");
+  log.info("LISTEN", "Starting listenMqtt setup...");
 
-  global.GoatBot.Listening = api.listenMqtt(async (err, event) => {
-    if (err) {
-      log.error("LISTEN", err.message || String(err));
-      return;
-    }
-
-    try {
-      if (event.type === "message" || event.type === "message_reply") {
-        if (isSpamming(event.threadID)) return;
-        await handleChat({ api, event });
-      } else {
-        await handleEvent({ api, event });
+  try {
+    const msgEmitter = await api.listenMqtt(async (err, event) => {
+      if (err) {
+        // err may be a plain object (parse_error), not an Error instance
+        const msg = err?.message || err?.error || JSON.stringify(err);
+        log.error("LISTEN", `Callback error: ${msg}`);
+        return;
       }
-    } catch (e) {
-      log.error("LISTEN", `Unhandled error: ${e.message}`);
+
+      // ── Debug: log every event that arrives ─────────────────
+      log.info("LISTEN", `Event received — type: ${event?.type} | threadID: ${event?.threadID} | senderID: ${event?.senderID} | body: ${JSON.stringify(event?.body || "").slice(0, 80)}`);
+
+      try {
+        if (event.type === "message" || event.type === "message_reply") {
+          if (isSpamming(event.threadID)) return;
+          await handleChat({ api, event });
+        } else {
+          await handleEvent({ api, event });
+        }
+      } catch (e) {
+        log.error("LISTEN", `Unhandled error: ${e.message}\n${e.stack}`);
+      }
+    });
+
+    global.GoatBot.Listening = msgEmitter;
+    log.success("LISTEN", "listenMqtt setup complete — waiting for events.");
+
+    if (msgEmitter && typeof msgEmitter.on === "function") {
+      msgEmitter.on("error", (err) => {
+        const msg = err?.message || err?.error || JSON.stringify(err);
+        log.error("LISTEN", `Emitter error: ${msg}`);
+      });
     }
-  });
+  } catch (e) {
+    log.error("LISTEN", `listenMqtt threw: ${e.message}\n${e.stack}`);
+  }
 };
