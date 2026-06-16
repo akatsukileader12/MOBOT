@@ -32,7 +32,7 @@
     "value": "cVG2aXKxEVIRfBwxaOseNYLA",
     "domain": ".facebook.com",
     "path": "/",
-    "expires": 1816152332.928542,
+    "expires": 1816177448.882509,
     "httpOnly": true,
     "secure": true
   },
@@ -41,7 +41,7 @@
     "value": "v1%3B694x360x2",
     "domain": ".facebook.com",
     "path": "/",
-    "expires": 1786776334,
+    "expires": 1786801447,
     "httpOnly": false,
     "secure": true,
     "sameSite": "Lax"
@@ -51,7 +51,7 @@
     "value": "61585105709390%3AF1PctaSdry%2C61579115638015%3Ao2UcklRQXy%2C100062530337681%3AzkqU158bTj%2C100053043793229%3Al0PhBwqSkF%2C61575411856095%3AX4RB4og9oF%2C61587105579960%3AkRliyMJAnt%2C61573475800099%3AiB8a0qbqv6%2C61564508512057%3AeAg2kxf33I",
     "domain": ".facebook.com",
     "path": "/",
-    "expires": 1816152330.568083,
+    "expires": 1816177445.636374,
     "httpOnly": true,
     "secure": true,
     "sameSite": "Lax"
@@ -75,15 +75,6 @@
     "secure": true
   },
   {
-    "name": "fr",
-    "value": "0ez7ZFzMlvZZULKtw.AWe1D6GreWGSDRU5ROFWCXE1lWT8Ubic006y2ODiobYYRfAcDPs.Bptque..AAA.0.0.BqMPEK.AWeO7V5BUOiHc-d-JxuIszII70g",
-    "domain": ".facebook.com",
-    "path": "/",
-    "expires": 1789368330.566662,
-    "httpOnly": true,
-    "secure": true
-  },
-  {
     "name": "locale",
     "value": "en_GB",
     "domain": ".facebook.com",
@@ -93,21 +84,30 @@
     "secure": true
   },
   {
-    "name": "fbl_st",
-    "value": "101022718%3BT%3A29693205",
+    "name": "fr",
+    "value": "0ez7ZFzMlvZZULKtw.AWemxfX51TtaqsyEErfJNa83cTthgaznL0_0WD-ycSkRENKhHlY.Bptque..AAA.0.0.BqMVMl.AWdWF6_gNLfR89PJrxD9wew2lJI",
     "domain": ".facebook.com",
     "path": "/",
-    "expires": 1813128334,
+    "expires": 1789393445.635845,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "fbl_st",
+    "value": "101223377%3BT%3A29693624",
+    "domain": ".facebook.com",
+    "path": "/",
+    "expires": 1813153447,
     "httpOnly": false,
     "secure": true,
     "sameSite": "Strict"
   },
   {
     "name": "wl_cbv",
-    "value": "v2%3Bclient_version%3A3191%3Btimestamp%3A1781592331",
+    "value": "v2%3Bclient_version%3A3191%3Btimestamp%3A1781617446",
     "domain": ".facebook.com",
     "path": "/",
-    "expires": 1789368339,
+    "expires": 1789393447,
     "httpOnly": false,
     "secure": true
   }
