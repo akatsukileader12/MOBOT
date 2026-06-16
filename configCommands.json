@@ -1,0 +1,12 @@
+{
+  "commandBanned": [],
+  "envGlobal": {},
+  "envCommands": {},
+  "envEvents": {},
+  "notes": {
+    "commandBanned": "List of command names to disable globally e.g. ['nsfw', 'spam']",
+    "envGlobal": "Global variables shared across all commands",
+    "envCommands": "Per-command env overrides { 'ping': { someKey: 'someValue' } }",
+    "envEvents": "Per-event env overrides"
+  }
+}
